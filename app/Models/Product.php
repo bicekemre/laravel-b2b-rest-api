@@ -24,6 +24,7 @@ class Product extends Model
     {
         return 'slug';
     }
+
     public function organizations()
     {
         return $this->belongsToMany(Organizations::class, 'organization_has_product', 'product_id', 'organization_id');

@@ -12,7 +12,8 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::get('/offers', [\App\Http\Controllers\OfferController::class, 'list']);
 
 Route::get('/products/items/{offset}/{limit}', [ProductController::class, 'items'])->name('products.items');
-Route::get('/products/{slug}', [ProductController::class, 'item'])->name('products.item');
+Route::get('/products/stock', [ProductController::class, 'stock'])->name('products.stock');
+Route::get('/products/item/{slug}', [ProductController::class, 'item'])->name('products.item');
 Route::post('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products/update/{slug}', [ProductController::class, 'update'])->name('products.update');
 Route::delete('/products/{slug}', [ProductController::class, 'delete'])->name('products.delete');
@@ -25,5 +26,4 @@ Route::post('/organizations/create', [OrganizationController::class, 'create'])-
 Route::post('/organizations/{slug}', [OrganizationController::class, 'update'])->name('organizations.update');
 Route::delete('/organizations/{slug}', [OrganizationController::class, 'delete'])->name('organizations.delete');
 
-Route::get('/stock', [ProductController::class, 'stock'])->name('products.stock');
 

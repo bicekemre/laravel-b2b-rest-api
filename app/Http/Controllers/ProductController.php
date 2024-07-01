@@ -22,9 +22,13 @@ class ProductController extends Controller
         return response()->json($products,Response::HTTP_OK);
     }
 
-    public function item($id)
+    public function item($slug)
     {
-        $product = Product::query()->findOrFail($id);
+        $product = Product::query()
+            ->where('slug', $slug)
+            ->with('imageable')
+            ->with('stock.organization')
+            ->firstOrFail();
 
         return response()->json($product);
     }
