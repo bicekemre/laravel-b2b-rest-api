@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
@@ -25,5 +26,7 @@ Route::get('/organizations/item/{slug}', [OrganizationController::class, 'item']
 Route::post('/organizations/create', [OrganizationController::class, 'create'])->name('organizations.create');
 Route::post('/organizations/{slug}', [OrganizationController::class, 'update'])->name('organizations.update');
 Route::delete('/organizations/{slug}', [OrganizationController::class, 'delete'])->name('organizations.delete');
+
+Route::get('/list/{slug}', [CategoryController::class, 'list'])->name('category.list');
 
 
