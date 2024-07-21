@@ -1,14 +1,19 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
+//Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
 
 Route::get('/offers', [\App\Http\Controllers\OfferController::class, 'list']);
 
@@ -28,5 +33,7 @@ Route::post('/organizations/{slug}', [OrganizationController::class, 'update'])-
 Route::delete('/organizations/{slug}', [OrganizationController::class, 'delete'])->name('organizations.delete');
 
 Route::get('/list/{slug}', [CategoryController::class, 'list'])->name('category.list');
+
+Route::post('/register', [AuthController::class, 'register'])->name('auth.register');
 
 
